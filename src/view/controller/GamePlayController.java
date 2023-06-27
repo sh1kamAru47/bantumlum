@@ -64,9 +64,11 @@ public class GamePlayController {
 	}
 	
 	public void createMoveBackground() {
-		if (background.getLayoutY() < 0)
-			background.setLayoutY(background.getLayoutY()+0.5);
-	
+		background.setLayoutY(background.getLayoutY()+1.5);
+		if (background.getLayoutY() > 808)
+			background.setLayoutY(-808);
+			
+		
 	}
 	
 

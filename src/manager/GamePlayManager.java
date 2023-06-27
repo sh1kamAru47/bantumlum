@@ -55,6 +55,7 @@ public class GamePlayManager {
 			public void handle(long now) {
 				event.timeLine(now);
 				controller.displayInfor();
+				controller.createMoveBackground();
 				int dangChoi = controller.getSpaceShip().getHP();
 				if(dangChoi == 0) {
 					controller.getSpaceShip().no();
@@ -74,16 +75,11 @@ public class GamePlayManager {
 					});			
 					pause.play();
 				}
-				
-				this.keyHandle();
-				
-			}
-			
-			private void keyHandle() {
-		
 				event.handleKey(isLeftKeyPressed, isRightKeyPressed, isSpaceKeyPressed, isRKeyPressed, isFKeyPressed);
-				controller.createMoveBackground();
+				
 			}
+				
+	
 		};
 		gameTimer.start();
 	
