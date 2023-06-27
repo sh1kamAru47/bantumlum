@@ -29,16 +29,21 @@ public class ThuyenTim extends Enermy {
 		Point vector = new Point();
 		vector.setLocation(getEndPosition());
 		vector.sub(getCenter());
+		double x = vector.doDai();
+		vector.mul(3/x);
 		Point position = getPosition();
 		AnimationTimer timer = new AnimationTimer() {
 			int currentFrame = 0;
 			long lastTime = 0;
-			
+			long temp = 0;
 			@Override
 			public void handle(long now) {
+				if(getCenter().distance(getEndPosition())>5) {
+					position.add(vector);
+					setPosition(position);
+				}
 				// TODO Auto-generated method stub
-				long t = time.getT();
-				time.setT(now);
+				if(isBOOM)this.stop();
 				if(currentFrame == 2)currentFrame = 0;
 				if(now - lastTime>1e9/10) {
 					Image image = new Image(linkImage[currentFrame]);
@@ -46,11 +51,11 @@ public class ThuyenTim extends Enermy {
 					currentFrame++;	
 					lastTime = now;
 				}
-				if(time.getT()%3==0) {
-					attack(spaceShip,pane);
+				if(now - temp > 1e9) {
+					attack(spaceShip, pane);
+					temp = now;
 				}
-				position.add(vector);
-				setPosition(position);
+				
 		
 			}
 			
@@ -76,7 +81,13 @@ class DanTim extends ILU{
 	}
 
 	public DanTim() {
-		this("/resourses/gamekit/spritesheets/enermy/danTim.png",20,20,1,new Point(0,10));
+		this("/resourses/gamekit/spritesheets/enermy/danTim.png",30,30,1,new Point(0,8));
+	}
+	@Override
+	public void attack(SpaceShip spaceShip, AnchorPane pane) {
+		spaceShip.setHP(spaceShip.getHP()-1);
+		spaceShip.dau();
+		
 	}
 
 	

@@ -62,9 +62,14 @@ public class UltimateBullet extends Bullet {
 						
 						if(hasVaCham(e)) {
 								e.setHP((e.getHP()-3)>0?(e.getHP()-3):0);
+								if(e.getHP()!=0)e.dau();
 								if(e.getHP()<=0) {
 									e.no();
 									E.remove(e);
+									PauseTransition pause = new PauseTransition(Duration.seconds(0.9));
+											pause.setOnFinished(event->{
+											
+											});
 									spaceShip.setScore(spaceShip.getScore()+1);
 								}
 						}
