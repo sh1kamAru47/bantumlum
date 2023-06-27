@@ -18,7 +18,6 @@ public class BulletHero extends Bullet{
 	
 	public void Shoot(SpaceShip spaceShip, AnchorPane pane,ArrayList<Entity> E) {
 		spaceShip.setBulletStore(spaceShip.getBulletStore()-1);
-		
 		position.add(spaceShip.getPosition());
 		this.setPosition(position);
 		
@@ -50,7 +49,7 @@ public class BulletHero extends Bullet{
 									e.setPosition(new Point(1000,1000));
 								
 										E.remove(E.indexOf(e));
-										System.out.println("HEAD SHOOT");
+										System.out.println("pum`");
 						
 										
 									 

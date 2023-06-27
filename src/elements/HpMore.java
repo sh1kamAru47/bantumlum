@@ -8,7 +8,7 @@ public class HpMore extends ExtraPresent{
 	
 	public HpMore() {
 		super("/resourses/gamekit/spritesheets/pixelHeart.png", 32, 32);
-		this.setVector(new Point(0,15));
+		this.setVector(new Point(0,10));
 		Random random = new Random();
 		this.setPosition(new Point((int) (random.nextDouble()*1100 + 100),0));
 		// TODO Auto-generated constructor stub
