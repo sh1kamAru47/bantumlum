@@ -93,10 +93,10 @@ public class SpaceShip extends Entity {
 	public void spaceShipAttack1(AnchorPane pane,ArrayList<Entity> E, boolean isSpace) {
 			if (isSpace) {
 				System.out.println("Shotin' them");
-				if(cachBan<=5) {
+			
 					UpgradeShoot bullet = new UpgradeShoot(cachBan);
 					bullet.Shoot(this, pane, E);
-				}
+				
 			}
 	}
 	public void spaceShipAttack2(AnchorPane pane, ArrayList<Entity> E, boolean isR) {

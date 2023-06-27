@@ -176,7 +176,7 @@ public class Event {
 			
 					vector.add(position);
 			
-					vector.mul(3.0/vector.doDai());
+					vector.mul(3.5/vector.doDai());
 			
 					stone.setVector(vector);
 					
