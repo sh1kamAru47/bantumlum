@@ -31,8 +31,12 @@ public class Stone extends ILU {
 	
 	@Override
 	public void attack(SpaceShip spaceShip, AnchorPane pane) {
-		if(spaceShip.getHP()>0)spaceShip.setHP(spaceShip.getHP()-1>0?spaceShip.getHP()-1:0);
-		if(!isBOOM)spaceShip.dau();
+		
+		if(!isBOOM) {
+			spaceShip.dau();
+			if(spaceShip.getHP()>0)
+				spaceShip.setHP(spaceShip.getHP()-1>0?spaceShip.getHP()-1:0);
+		}
 	}
 	
 }

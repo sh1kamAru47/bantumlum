@@ -19,7 +19,7 @@ public class UpgradeBullet extends ExtraPresent{
 		// TODO Auto-generated method stub
 	//	spaceShip.setBulletStore(spaceShip.getBulletStore()+30);
 		int cachBan = spaceShip.getCachBan();
-		if(cachBan<6) {
+		if(cachBan<5) {
 			spaceShip.setCachBan(cachBan + 1);
 			spaceShip.setScore(spaceShip.getScore()+2);
 		}

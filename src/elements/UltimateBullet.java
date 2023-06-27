@@ -64,8 +64,15 @@ public class UltimateBullet extends Bullet {
 								e.setHP((e.getHP()-3)>0?(e.getHP()-3):0);
 								if(e.getHP()<=0) {
 									e.no();
+									int addScore = 0;
+									if (e instanceof Stone) {
+										addScore = 1;
+									}
+									else if (e instanceof EnermyShip) {
+										addScore = 2;
+									}
+									spaceShip.setScore(spaceShip.getScore() + addScore);
 									E.remove(e);
-									spaceShip.setScore(spaceShip.getScore()+1);
 								}
 						}
 					}
