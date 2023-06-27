@@ -72,8 +72,8 @@ public class GamePlayController {
 		if (background2.getLayoutY() > 808) {
 			background2.setLayoutY(-808);
 		}
-		if (countBackground > 10) {
-			//win
+		if (countBackground > 5) {
+			//win// 
 		}
 	}
 	private SpaceShip spaceShip;

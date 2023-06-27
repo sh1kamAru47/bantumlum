@@ -16,9 +16,9 @@ public class SpaceShip extends Entity {
 		super(linkImage, width, heigh,10);
 	}
 	public SpaceShip() {
-		this("/resourses/gamekit/spritesheets/ship/SpaceShip.png", 50, 50);
-		setPosition(new Point(225, 600));
-		bulletStore = 100;
+		this("/resourses/gamekit/spritesheets/ship/SpaceShip.png", 90, 90);
+		setPosition(new Point(650, 700));
+		bulletStore = 1000;
 		ultiCount = 2; // khoi tao bang 1
 	}
 	private int score = 0;
@@ -101,8 +101,7 @@ public class SpaceShip extends Entity {
 	}
 	public void spaceShipAttack2(AnchorPane pane, ArrayList<Entity> E, boolean isR) {
 		if (isR) {
-			System.out.println("Hay^ ya!!");
-				UltimateBullet ulti = new UltimateBullet("/resourses/gamekit/spritesheets/UltimateBullet/Heaven's Fury VFX_Animation 1_00.png",125,500,new Point(0,1));
+				UltimateBullet ulti = new UltimateBullet("/resourses/gamekit/spritesheets/UltimateBullet/Heaven's Fury VFX_Animation 1_00.png",150,700,new Point(0,1));
 				ulti.Shoot(this, pane, E);
 		}
 	}

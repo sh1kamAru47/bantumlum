@@ -7,13 +7,13 @@ import javafx.scene.layout.AnchorPane;
 import javafx.util.Duration;
 import lib.Point;
 public class BulletHero extends Bullet{
-	Point position = new Point(20, 15);//vị trí so với ufo
+	Point position = new Point(30, 20);//vị trí so với ufo
 	public BulletHero(String linkImage, float width, float heigh, Point vector) {
 		super(linkImage, width, heigh, vector);
 	}
 	public BulletHero() {
 		this("/resourses/gamekit/spritesheets/basicBullet.png",
-			 20, 20, new Point(0, -15));
+			 30, 30, new Point(0, -15));
 	}
 	
 	public void Shoot(SpaceShip spaceShip, AnchorPane pane,ArrayList<Entity> E) {
@@ -38,29 +38,18 @@ public class BulletHero extends Bullet{
 						e.setHP(e.getHP()-1);
 						if(e instanceof Stone) {
 					
-							 if(e.getHP()==1)((Stone) e).dau();
-							 if(e.getHP()==0) {
-								 spaceShip.setScore(spaceShip.getScore()+1);
-								 ((Stone)e).no();
-							
-								 
-								 PauseTransition delay = new PauseTransition(Duration.seconds(0.8));
-								 delay.setOnFinished(event->{
-									e.setPosition(new Point(1000,1000));
-								
-										E.remove(E.indexOf(e));
-										System.out.println("pum`");
-						
-										
-									 
-								 });delay.play();
-								
-									
-							 }
+							 if(e.getHP()==1) e.dau();
+							 
 						}
+						if(e.getHP()<=0) {
+							e.no();
+							E.remove(e);
+						}
+					
 						pane.getChildren().remove(getImageView());
 						this.stop();
 					}
+					
 				}
                  
 				if (position.getY() < 0) {

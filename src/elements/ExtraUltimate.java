@@ -7,7 +7,7 @@ import lib.Point;
 public class ExtraUltimate extends ExtraPresent{
 
 	public ExtraUltimate() {
-		super("/resourses/gamekit/spritesheets/cherry_ultimate.png", 40, 40);
+		super("/resourses/gamekit/spritesheets/cherry_ultimate.png", 60, 60);
 		// TODO Auto-generated constructor stub
 		this.setVector(new Point(0,11));
 		Random random = new Random();

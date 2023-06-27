@@ -1,6 +1,27 @@
+
 package manager;
 
 import java.io.IOException;
+import java.util.ArrayList;
+
+import elements.EnermyShip;
+import elements.Entity;
+import elements.ExtraBullet;
+import elements.HpMore;
+import elements.SpaceShip;
+import elements.Stone;
+import javafx.animation.AnimationTimer;
+import javafx.animation.PauseTransition;
+import javafx.scene.control.ProgressBar;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.text.Text;
+import javafx.stage.Stage;
+import javafx.util.Duration;
+import lib.Point;
+import lib.Timer;
+import view.controller.GamePlayController;
+
+
 import java.util.ArrayList;
 
 import elements.Entity;
@@ -56,6 +77,7 @@ public class Event {
 				
 			}
 			nemDaDauTay();	
+			themDich();
 			deltaTime ++;
 			if (deltaTime%4 == 2) bonusThemDan();
 			if (deltaTime%5 == 3) themHP();
@@ -106,6 +128,12 @@ public class Event {
 			
 		}
 	}
+	public void themDich() {
+		
+		EnermyShip ship = new EnermyShip();
+		E.add(ship);
+		ship.move(spaceShip, gamePane);
+	}
 	
 	public void increase(int bullets) {
 		if (spaceShip.getBulletStore() <= 90) spaceShip.setBulletStore(spaceShip.getBulletStore()+10);
@@ -138,9 +166,7 @@ public class Event {
 			public void handle(long now) {
 				// TODO Auto-generated method stub
 			if(now - lastTime>1e9/10) {
-				if (stone.getPosition().getY() > 500) {
-					stone.getVector().setLocation(1, 3);
-				}else if(stone.getCenter().getY()<spaceShip.getCenter().getY()-200) {
+				 if(stone.getCenter().getY()<spaceShip.getCenter().getY()-200) {
 					Point position = spaceShip.getCenter();
 					
 					Point vector = new Point();
@@ -181,4 +207,5 @@ public class Event {
 			spaceShip.setHP(-1);
 		
 	}
+
 }

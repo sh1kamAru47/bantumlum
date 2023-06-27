@@ -75,11 +75,9 @@ public class GamePlayManager {
 					});			
 					pause.play();
 				}
-				
 				event.handleKey(isLeftKeyPressed, isRightKeyPressed, isSpaceKeyPressed, isRKeyPressed, isFKeyPressed);
 				
 			}
-				
 		};
 		gameTimer.start();
 	}

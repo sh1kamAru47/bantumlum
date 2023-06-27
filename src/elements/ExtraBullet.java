@@ -7,7 +7,7 @@ import lib.Point;
 public class ExtraBullet extends ExtraPresent{
 
 	public ExtraBullet() {
-		super("/resourses/gamekit/spritesheets/AMM_bullet.png", 40, 40);
+		super("/resourses/gamekit/spritesheets/AMM_bullet.png", 60, 60);
 		this.setVector(new Point(0,11));
 		Random random = new Random();
 		this.setPosition(new Point((int) (random.nextDouble()*1100 + 100),0));

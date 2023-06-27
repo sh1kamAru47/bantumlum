@@ -7,7 +7,7 @@ import lib.Point;
 public class HpMore extends ExtraPresent{
 	
 	public HpMore() {
-		super("/resourses/gamekit/spritesheets/pixelHeart.png", 32, 32);
+		super("/resourses/gamekit/spritesheets/pixelHeart.png", 50, 50);
 		this.setVector(new Point(0,10));
 		Random random = new Random();
 		this.setPosition(new Point((int) (random.nextDouble()*1100 + 100),0));

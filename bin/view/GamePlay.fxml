@@ -40,12 +40,12 @@
          </image>
       </ImageView>
       <ProgressBar fx:id="hpBar" layoutX="152.0" layoutY="86.0" prefWidth="200.0" progress="0.0" />
-      <Text fx:id="countBullet" fill="WHITE" layoutX="152.0" layoutY="203.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Bullets: " wrappingWidth="179.0">
+      <Text fx:id="countBullet" fill="WHITE" layoutX="152.0" layoutY="195.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Bullets: " wrappingWidth="282.20001220703125">
          <font>
             <Font name="Impact" size="36.0" />
          </font>
       </Text>
-      <Text fx:id="score" fill="#fff8f8" layoutX="152.0" layoutY="246.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Score">
+      <Text fx:id="score" fill="#fff8f8" layoutX="153.0" layoutY="233.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Score" wrappingWidth="249.3627471923828">
          <font>
             <Font name="Impact" size="30.0" />
          </font>

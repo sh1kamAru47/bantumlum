@@ -8,10 +8,10 @@ public class UpgradeBullet extends ExtraPresent{
 	//constructor
 	
 	public UpgradeBullet() {
-		super("/resourses/gamekit/spritesheets/power-up.png",40,40);
+		super("/resourses/gamekit/spritesheets/power-up.png",50,50);
 		this.setVector(new Point(0,8));
 		Random random = new Random();
-		this.setPosition(new Point((int) (random.nextDouble()*1400),0));
+		this.setPosition(new Point((int) (random.nextDouble()*1000 + 100),0));
 	}
 
 	@Override
