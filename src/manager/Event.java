@@ -3,42 +3,20 @@ package manager;
 
 import java.io.IOException;
 import java.util.ArrayList;
-
-import elements.EnermyShip;
-import elements.Entity;
-import elements.ExtraBullet;
-import elements.HpMore;
-import elements.SpaceShip;
-import elements.Stone;
-import elements.ThuyenTim;
-import javafx.animation.AnimationTimer;
-import javafx.animation.PauseTransition;
-import javafx.scene.control.ProgressBar;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.text.Text;
-import javafx.stage.Stage;
-import javafx.util.Duration;
-import lib.Point;
-import lib.Timer;
-import view.controller.GamePlayController;
-
-
-import java.util.ArrayList;
+import java.util.Random;
 
 import elements.Entity;
 import elements.ExtraBullet;
 import elements.ExtraUltimate;
-import elements.UpgradeBullet;
 import elements.HpMore;
 import elements.SpaceShip;
 import elements.Stone;
+import elements.ThuyenTim;
+import elements.UpgradeBullet;
 import javafx.animation.AnimationTimer;
 import javafx.animation.PauseTransition;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.paint.Color;
-import javafx.scene.text.Font;
-import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.util.Duration;
@@ -75,13 +53,10 @@ public class Event {
 		if(t != timer.getT()) {
 			if(timer.getT()%10==0){
 				increase(10);
-				
+				themThuyenTim();
 			}
-			ThuyenTim tim = new ThuyenTim();
-			E.add(tim);
-			tim.move(spaceShip, gamePane);
+			
 			nemDaDauTay();	
-			themDich();
 			deltaTime ++;
 			if (deltaTime%4 == 2) bonusThemDan();
 			if (deltaTime%5 == 3) themHP();
@@ -132,11 +107,19 @@ public class Event {
 			
 		}
 	}
-	public void themDich() {
-		
-		EnermyShip ship = new EnermyShip();
-		E.add(ship);
-		ship.move(spaceShip, gamePane);
+	public void themThuyenTim() {
+	 Random random = new Random();
+		int x = random.nextInt(100);
+		for(int i = 0;i<9;i++) {
+			int offset = i-4;
+			Point temp = new Point(100,-50);
+			temp.setLocation(temp.getX()*offset,temp.getY()*Math.abs(offset));
+			ThuyenTim thuyen = new ThuyenTim();
+			temp.add(new Point(600+x,300+x));
+			thuyen.setEndPosition(temp);
+			E.add(thuyen);
+			thuyen.move(spaceShip, gamePane);
+		}
 	}
 	
 	public void increase(int bullets) {
