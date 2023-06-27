@@ -10,6 +10,7 @@ import elements.ExtraBullet;
 import elements.HpMore;
 import elements.SpaceShip;
 import elements.Stone;
+import elements.ThuyenTim;
 import javafx.animation.AnimationTimer;
 import javafx.animation.PauseTransition;
 import javafx.scene.control.ProgressBar;
@@ -76,6 +77,9 @@ public class Event {
 				increase(10);
 				
 			}
+			ThuyenTim tim = new ThuyenTim();
+			E.add(tim);
+			tim.move(spaceShip, gamePane);
 			nemDaDauTay();	
 			themDich();
 			deltaTime ++;
