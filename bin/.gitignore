@@ -1,10 +1,2 @@
-<<<<<<< HEAD
-/application/
-/elements/
-/lib/
-=======
-/elements/
->>>>>>> ef9ec720aaa15ba4c97f4136b3b1875cbdc1ff45
 /manager/
-/resourses/
-/view/
+/elements/

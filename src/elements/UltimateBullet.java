@@ -62,22 +62,12 @@ public class UltimateBullet extends Bullet {
 						
 						if(hasVaCham(e)) {
 								e.setHP((e.getHP()-3)>0?(e.getHP()-3):0);
-//								if(e instanceof Stone) {
-//									 if(e.getHP()==0) {
-//										 spaceShip.setScore(spaceShip.getScore()+1);
-//										 ((Stone)e).no();
-//										 PauseTransition delay = new PauseTransition(Duration.seconds(0.5));
-//										 delay.setOnFinished(event->{
-//												e.setPosition(new Point(1000,1000));
-//												E.remove(e);
-//											 
-//										 });delay.play();
-//										
-//											
-//									 }
-//								}
+
 								if (e instanceof Stone) {
 									((Stone)e).no();
+									
+								}
+								if(e.getHP()<=0) {
 									E.remove(e);
 									spaceShip.setScore(spaceShip.getScore()+1);
 								}

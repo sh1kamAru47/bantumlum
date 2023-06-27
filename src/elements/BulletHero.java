@@ -39,28 +39,17 @@ public class BulletHero extends Bullet{
 						if(e instanceof Stone) {
 					
 							 if(e.getHP()==1)((Stone) e).dau();
-							 if(e.getHP()==0) {
-								 spaceShip.setScore(spaceShip.getScore()+1);
-								 ((Stone)e).no();
-							
-								 
-								 PauseTransition delay = new PauseTransition(Duration.seconds(0.8));
-								 delay.setOnFinished(event->{
-									e.setPosition(new Point(1000,1000));
-								
-										E.remove(E.indexOf(e));
-										System.out.println("pum`");
-						
-										
-									 
-								 });delay.play();
-								
-									
-							 }
+							 
+							 
 						}
+						if(e.getHP()<=0) {
+							if(e.getHP()==0)((EnermyShip)e).no();
+							E.remove(e);}
+					
 						pane.getChildren().remove(getImageView());
 						this.stop();
 					}
+					
 				}
                  
 				if (position.getY() < 0) {
