@@ -1,0 +1,90 @@
+package manager;
+
+import java.io.IOException;
+
+import javafx.animation.AnimationTimer;
+import javafx.animation.PauseTransition;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
+import javafx.scene.input.KeyCode;
+import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
+import javafx.util.Duration;
+import view.controller.GamePlayController;
+
+public class GamePlayManager {
+	private boolean isLeftKeyPressed;
+	private boolean isRightKeyPressed;
+	private boolean isSpaceKeyPressed;
+	public GamePlayManager() throws IOException {
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/GamePlay.fxml"));
+		
+		AnchorPane gameRoot = loader.load();
+		controller = loader.getController();
+		
+		String css = getClass().getResource("/view/gamePlay.css").toExternalForm();
+		gameScene = new Scene(gameRoot);
+		gameScene.getStylesheets().add(css);
+		gameScene.setOnKeyPressed(event->{
+			KeyCode keyCode = event.getCode();
+			if (keyCode == KeyCode.LEFT) isLeftKeyPressed = true;
+			else if (keyCode == KeyCode.RIGHT) isRightKeyPressed = true;
+			else if (keyCode == KeyCode.SPACE) isSpaceKeyPressed = true;
+		});
+		gameScene.setOnKeyReleased(event->{
+			KeyCode keyCode = event.getCode();
+			if (keyCode == KeyCode.LEFT) isLeftKeyPressed = false;
+			else if (keyCode == KeyCode.RIGHT) isRightKeyPressed = false;
+			else if (keyCode == KeyCode.SPACE) isSpaceKeyPressed = false;
+		});
+	}
+	public GamePlayManager(Stage gameStage) throws IOException {
+		this();
+		gameStage.setScene(gameScene);
+		Event event = new Event(controller);
+		
+		gameTimer = new AnimationTimer() {	
+			
+			@Override
+			public void handle(long now) {
+				event.timeLine(now);
+				controller.displayInfor();
+				int dangChoi = controller.getSpaceShip().getHP();
+				if(dangChoi == 0) {
+					controller.getSpaceShip().no();
+					this.stop();
+					PauseTransition pause = new PauseTransition(Duration.seconds(10));
+					pause.setOnFinished(x->{
+						try {
+							event.gameOver();
+							
+						} catch (IOException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+						gameStage.hide();
+						
+						
+					});			
+					pause.play();
+				}
+				
+				this.keyHandle();
+				
+			}
+			
+			private void keyHandle() {
+		
+				event.handleKey(isLeftKeyPressed, isRightKeyPressed, isSpaceKeyPressed);
+				controller.createMoveBackground();
+			}
+		};
+		gameTimer.start();
+	
+		
+	}
+	
+	private Scene gameScene;
+	private GamePlayController controller;
+	private AnimationTimer gameTimer;
+}
