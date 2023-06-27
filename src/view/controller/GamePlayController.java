@@ -25,10 +25,10 @@ public class GamePlayController {
 	public void setHpBar(ProgressBar hpBar) {
 		this.hpBar = hpBar;
 	}
-	@FXML private ImageView background;
+	@FXML private ImageView background1;
+	@FXML private ImageView background2;
 	@FXML private Text countBullet;
 	@FXML private Text score;
-
 	@FXML private ProgressBar ultiBar;
 	public ProgressBar getUltiBar() {
 		return ultiBar;
@@ -62,14 +62,20 @@ public class GamePlayController {
 		//bullet.setText("Bullets: "+String.valueOf(spaceShip.getBulletStore()));
 		score.setText("Score: "+ spaceShip.getScore());
 	}
-	
+	private int countBackground = 1;
 	public void createMoveBackground() {
-		if (background.getLayoutY() < 0)
-			background.setLayoutY(background.getLayoutY()+0.5);
-	
+		background1.setLayoutY(background1.getLayoutY()+0.5);
+		background2.setLayoutY(background2.getLayoutY()+0.5);
+		if (background1.getLayoutY()> 808) {
+			background1.setLayoutY(-808);
+		}
+		if (background2.getLayoutY() > 808) {
+			background2.setLayoutY(-808);
+		}
+		if (countBackground > 10) {
+			//win
+		}
 	}
-	
-
 	private SpaceShip spaceShip;
 	public SpaceShip getSpaceShip() {
 		return spaceShip;
