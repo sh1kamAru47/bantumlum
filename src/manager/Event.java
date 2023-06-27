@@ -5,6 +5,8 @@ import java.util.ArrayList;
 
 import elements.Entity;
 import elements.ExtraBullet;
+import elements.ExtraUltimate;
+import elements.UpgradeBullet;
 import elements.HpMore;
 import elements.SpaceShip;
 import elements.Stone;
@@ -26,6 +28,8 @@ public class Event {
 	private AnchorPane gamePane;
 	private SpaceShip spaceShip;
 	private Timer timer = new Timer();
+//	private long lastTime = 0;
+	private long deltaTime = 0;
 	private GamePlayController controller;
 	private Text bullet;
 	private Text score;
@@ -51,20 +55,26 @@ public class Event {
 				increase(10);
 				
 			}
-			nemDaDauTay();
-			bonusThemDan();
-			themHP();
+			nemDaDauTay();	
+			deltaTime ++;
+			if (deltaTime%4 == 2) bonusThemDan();
+			if (deltaTime%5 == 3) themHP();
+			if (deltaTime%5 == 4) upgradeShoot();
+			if (deltaTime%7 == 3) addUltimate();
+//			lastTime = now;
 		}
+		
 	}
-	public void handleKey(boolean isLeftKeyPressed, boolean isRightKeyPressed, boolean isSpaceKeyPressed) {
+	public void handleKey(boolean isLeftKeyPressed, boolean isRightKeyPressed, boolean isSpaceKeyPressed, boolean isRKeyPressed, boolean isFKeyPressed) {
 		//chuyen 3 cai nay ra cho khac.
 //		hpBar.setProgress(spaceShip.getHP()/10.0);
 //		bullet.setText("Bullets: "+String.valueOf(spaceShip.getBulletStore()));
 //		score.setText("Score: "+ spaceShip.getScore());
 		if(spaceShip.canDiChuyen)spaceShip.spaceShipMove(isLeftKeyPressed, isRightKeyPressed);
-		
-		if (isSpaceKeyPressed && spaceShip.canShoot && spaceShip.getBulletStore() >= spaceShip.getCachBan()) {
-			spaceShip.spaceShipAttack(gamePane,E);
+		if ((isSpaceKeyPressed && spaceShip.canShoot && spaceShip.getBulletStore() >= spaceShip.getCachBan())) {
+			
+			spaceShip.spaceShipAttack1(gamePane,E, isSpaceKeyPressed);
+			
 			spaceShip.canShoot = false;
 			
 			PauseTransition shootDelay = new PauseTransition(Duration.seconds(0.2)); 
@@ -73,6 +83,28 @@ public class Event {
 			});	
 			shootDelay.play();
 		}
+		if (isRKeyPressed && spaceShip.canUlti) {
+			
+			spaceShip.spaceShipAttack2(gamePane, E, isRKeyPressed);
+			spaceShip.canUlti = false;
+			PauseTransition shootDelay = new PauseTransition(Duration.seconds(1.0));
+			shootDelay.setOnFinished(event->{
+				spaceShip.canUlti = true;
+			});
+			shootDelay.play();
+			
+		}
+		if (isFKeyPressed && spaceShip.getCachBan() > 1 && spaceShip.canChange) {
+		
+			spaceShip.setCachBan(spaceShip.getCachBan() - 1);
+			spaceShip.canChange = false;
+			PauseTransition changeDelay = new PauseTransition(Duration.seconds(1.0));
+			changeDelay.setOnFinished(event->{
+				spaceShip.canChange = true;
+			});
+			changeDelay.play();
+			
+		}
 	}
 	
 	public void increase(int bullets) {
@@ -80,14 +112,22 @@ public class Event {
 	
           bullet.setText("Bullets: "+String.valueOf(spaceShip.getBulletStore()));
 	}
-	public void bonusThemDan() {
-		ExtraBullet extraBullet = new ExtraBullet();
-		extraBullet.move(spaceShip, gamePane);
+	public void upgradeShoot() {
+		UpgradeBullet UpgradeBullet = new UpgradeBullet();
+		UpgradeBullet.move(spaceShip, gamePane);
 	}
 	public void themHP() {
 		HpMore hp = new HpMore();
 		
 		hp.move(spaceShip, gamePane);
+	}
+	public void addUltimate() {
+		ExtraUltimate ulti = new ExtraUltimate();
+		ulti.move(spaceShip, gamePane);
+	}
+	public void bonusThemDan() {
+		ExtraBullet extraBullet = new ExtraBullet();
+		extraBullet.move(spaceShip, gamePane);
 	}
 	public void nemDaDauTay() {
 		Stone stone = new Stone();
@@ -98,7 +138,9 @@ public class Event {
 			public void handle(long now) {
 				// TODO Auto-generated method stub
 			if(now - lastTime>1e9/10) {
-				if(stone.getCenter().getY()<spaceShip.getCenter().getY()-200) {
+				if (stone.getPosition().getY() > 500) {
+					stone.getVector().setLocation(1, 3);
+				}else if(stone.getCenter().getY()<spaceShip.getCenter().getY()-200) {
 					Point position = spaceShip.getCenter();
 					
 					Point vector = new Point();

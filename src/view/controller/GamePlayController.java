@@ -29,7 +29,13 @@ public class GamePlayController {
 	@FXML private Text countBullet;
 	@FXML private Text score;
 
-
+	@FXML private ProgressBar ultiBar;
+	public ProgressBar getUltiBar() {
+		return ultiBar;
+	}
+	public void setUltiBar(ProgressBar ultiBar) {
+		this.ultiBar = ultiBar;
+	}
 	public Text getCountBullet() {
 		return countBullet;
 	}
@@ -72,11 +78,10 @@ public class GamePlayController {
 	private boolean canShoot = true;
 	private Text bossText;
 	
-	
 	public void displayInfor() {
 		countBullet.setText("Bullets: "+String.valueOf(spaceShip.getBulletStore()));
 		hpBar.setProgress(spaceShip.getHP()/10.0);
-		//bullet.setText("Bullets: "+String.valueOf(spaceShip.getBulletStore()));
+		ultiBar.setProgress(spaceShip.getUltiCount()/3.0);
 		score.setText("Score: "+ spaceShip.getScore());
 	}
 

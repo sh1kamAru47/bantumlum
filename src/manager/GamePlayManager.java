@@ -16,6 +16,8 @@ public class GamePlayManager {
 	private boolean isLeftKeyPressed;
 	private boolean isRightKeyPressed;
 	private boolean isSpaceKeyPressed;
+	private boolean isRKeyPressed;
+	private boolean isFKeyPressed;
 	public GamePlayManager() throws IOException {
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/GamePlay.fxml"));
 		
@@ -30,12 +32,16 @@ public class GamePlayManager {
 			if (keyCode == KeyCode.LEFT) isLeftKeyPressed = true;
 			else if (keyCode == KeyCode.RIGHT) isRightKeyPressed = true;
 			else if (keyCode == KeyCode.SPACE) isSpaceKeyPressed = true;
+			else if (keyCode == KeyCode.R) isRKeyPressed = true;
+			else if (keyCode == KeyCode.F) isFKeyPressed = true;
 		});
 		gameScene.setOnKeyReleased(event->{
 			KeyCode keyCode = event.getCode();
 			if (keyCode == KeyCode.LEFT) isLeftKeyPressed = false;
 			else if (keyCode == KeyCode.RIGHT) isRightKeyPressed = false;
 			else if (keyCode == KeyCode.SPACE) isSpaceKeyPressed = false;
+			else if (keyCode == KeyCode.R) isRKeyPressed = false;
+			else if (keyCode == KeyCode.F) isFKeyPressed = false;
 		});
 	}
 	public GamePlayManager(Stage gameStage) throws IOException {
@@ -53,7 +59,7 @@ public class GamePlayManager {
 				if(dangChoi == 0) {
 					controller.getSpaceShip().no();
 					this.stop();
-					PauseTransition pause = new PauseTransition(Duration.seconds(10));
+					PauseTransition pause = new PauseTransition(Duration.seconds(0.9));
 					pause.setOnFinished(x->{
 						try {
 							event.gameOver();
@@ -75,7 +81,7 @@ public class GamePlayManager {
 			
 			private void keyHandle() {
 		
-				event.handleKey(isLeftKeyPressed, isRightKeyPressed, isSpaceKeyPressed);
+				event.handleKey(isLeftKeyPressed, isRightKeyPressed, isSpaceKeyPressed, isRKeyPressed, isFKeyPressed);
 				controller.createMoveBackground();
 			}
 		};

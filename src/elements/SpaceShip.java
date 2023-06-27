@@ -11,7 +11,7 @@ import javafx.util.Duration;
 import lib.Point;
 
 public class SpaceShip extends Entity {
-
+	private int ultiCount; // so um ti 
 	public SpaceShip(String linkImage, float width, float heigh) {
 		super(linkImage, width, heigh,10);
 	}
@@ -19,15 +19,23 @@ public class SpaceShip extends Entity {
 		this("/resourses/gamekit/spritesheets/ship/SpaceShip.png", 50, 50);
 		setPosition(new Point(225, 600));
 		bulletStore = 100;
+		ultiCount = 2; // khoi tao bang 1
 	}
 	private int score = 0;
 	private static final double STEP = 5;
 	private double shipAngle;
 	private int bulletStore;
-	private int cachBan = 1;// cách bắn
+	private int cachBan = 4;// cách bắn
 	public boolean canShoot = true;
 	public boolean canDiChuyen = true;
-	
+	public boolean canUlti = true;
+	public boolean canChange = true;
+	public int getUltiCount() {
+		return ultiCount;
+	}
+	public void setUltiCount(int ultiCount) {
+		this.ultiCount = ultiCount;
+	}
 	public int getScore() {
 		return score;
 	}
@@ -82,16 +90,21 @@ public class SpaceShip extends Entity {
 		}
 	}
 	
-	public void spaceShipAttack(AnchorPane pane,ArrayList<Entity> E) {
-			System.out.println("Shotin' them");
-			if(cachBan<=5) {
-				BulletExtra bullet = new BulletExtra(cachBan);
-				bullet.Shoot(this, pane, E);
-			}else  {
+	public void spaceShipAttack1(AnchorPane pane,ArrayList<Entity> E, boolean isSpace) {
+			if (isSpace) {
+				System.out.println("Shotin' them");
+				if(cachBan<=5) {
+					UpgradeShoot bullet = new UpgradeShoot(cachBan);
+					bullet.Shoot(this, pane, E);
+				}
+			}
+	}
+	public void spaceShipAttack2(AnchorPane pane, ArrayList<Entity> E, boolean isR) {
+		if (isR) {
+			System.out.println("Hay^ ya!!");
 				UltimateBullet ulti = new UltimateBullet("/resourses/gamekit/spritesheets/UltimateBullet/Heaven's Fury VFX_Animation 1_00.png",125,500,new Point(0,1));
 				ulti.Shoot(this, pane, E);
-			}
-			
+		}
 	}
 	public void dau() {//đau
 		FadeTransition fade = new FadeTransition();
