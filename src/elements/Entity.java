@@ -80,6 +80,7 @@ public class Entity {
 		return false;
 	}
 	public void no() {//nổ
+		isBOOM = true;   
 		String[] FRAME_PATH = {
 				"/resourses/gamekit/spritesheets/explosion1.png",
 				"/resourses/gamekit/spritesheets/explosion2.png",

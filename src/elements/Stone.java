@@ -34,8 +34,12 @@ public class Stone extends ILU {
 		
 		if(!isBOOM) {
 			spaceShip.dau();
+<<<<<<< HEAD
 			if(spaceShip.getHP()>0)
 				spaceShip.setHP(spaceShip.getHP()-1>0?spaceShip.getHP()-1:0);
+=======
+			       if(spaceShip.getHP()>0)spaceShip.setHP(spaceShip.getHP()-1>0?spaceShip.getHP()-1:0);
+>>>>>>> 9664f409ae2eac4ad90bc19c18b678e35fe2c899
 		}
 	}
 	
