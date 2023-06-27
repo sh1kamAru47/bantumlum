@@ -40,6 +40,11 @@ public class BulletHero extends Bullet{
 						if(e.getHP()<=0) {
 							e.no();
 							E.remove(e);
+							pane.getChildren().remove(e.getImageView());
+							e = null;
+							
+
+							
 						}
 					
 						pane.getChildren().remove(getImageView());

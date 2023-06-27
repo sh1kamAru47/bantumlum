@@ -98,7 +98,7 @@ public class Entity {
 			@Override
 			public void handle(long now) {
 				// TODO Auto-generated method stub
-				if(currentFrame == 8) {
+				if(currentFrame == 5) {
 					this.stop();
 					
 				}

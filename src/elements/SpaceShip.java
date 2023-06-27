@@ -17,7 +17,7 @@ public class SpaceShip extends Entity {
 	}
 	public SpaceShip() {
 		this("/resourses/gamekit/spritesheets/ship/SpaceShip.png", 90, 90);
-		setPosition(new Point(650, 700));
+		setPosition(new Point(650, 600));
 		bulletStore = 1000;
 		ultiCount = 2; // khoi tao bang 1
 	}

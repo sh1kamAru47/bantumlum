@@ -66,10 +66,7 @@ public class UltimateBullet extends Bullet {
 								if(e.getHP()<=0) {
 									e.no();
 									E.remove(e);
-									PauseTransition pause = new PauseTransition(Duration.seconds(0.9));
-											pause.setOnFinished(event->{
-											
-											});
+									e = null;
 									spaceShip.setScore(spaceShip.getScore()+1);
 								}
 						}
