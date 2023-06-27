@@ -3,6 +3,7 @@ package manager;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import elements.EnermyShip;
 import elements.Entity;
 import elements.ExtraBullet;
 import elements.HpMore;
@@ -12,9 +13,6 @@ import javafx.animation.AnimationTimer;
 import javafx.animation.PauseTransition;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.paint.Color;
-import javafx.scene.text.Font;
-import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.util.Duration;
@@ -32,7 +30,9 @@ public class Event {
 	private ProgressBar hpBar;
 	private ArrayList<Entity> E = new ArrayList<Entity>();
 	
-	
+	private int timeWaitEnermyShip = 10;
+	private int timeWaitEtraBullet = 10;
+	private int timeWaitStone = 3;
 	public Event(GamePlayController controller) {
 		hpBar = controller.getHpBar();
 		this.controller = controller;
@@ -49,11 +49,15 @@ public class Event {
 		if(t != timer.getT()) {
 			if(timer.getT()%10==0){
 				increase(10);
+				keDichBayBay();
 				
 			}
 			nemDaDauTay();
 			bonusThemDan();
+			if(timer.getT()%timeWaitEnermyShip==0)
+				keDichBayBay();
 			themHP();
+
 		}
 	}
 	public void handleKey(boolean isLeftKeyPressed, boolean isRightKeyPressed, boolean isSpaceKeyPressed) {
@@ -74,7 +78,11 @@ public class Event {
 			shootDelay.play();
 		}
 	}
-	
+	public void keDichBayBay() {
+		EnermyShip enermyShip = new EnermyShip();
+		E.add(enermyShip);
+		enermyShip.move(spaceShip, gamePane);
+	}
 	public void increase(int bullets) {
 		if (spaceShip.getBulletStore() <= 90) spaceShip.setBulletStore(spaceShip.getBulletStore()+10);
 	

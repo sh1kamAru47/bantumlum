@@ -1,9 +1,8 @@
 package application;
 
-import manager.MenuManager;
-import view.controller.MenuController;
 import javafx.application.Application;
 import javafx.stage.Stage;
+import manager.MenuManager;
 
 public class Main extends Application {
 	private Stage mainStage = new Stage();
