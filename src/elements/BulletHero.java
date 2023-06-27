@@ -36,11 +36,7 @@ public class BulletHero extends Bullet{
 					
 					if(hasVaCham(e)) {
 						e.setHP(e.getHP()-1);
-						if(e instanceof Stone) {
-					
-							 if(e.getHP()==1) e.dau();
-							 
-						}
+						if(e.getHP()!=0) e.dau();
 						if(e.getHP()<=0) {
 							e.no();
 							int addScore = 0;

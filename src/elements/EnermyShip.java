@@ -9,12 +9,12 @@ import javafx.animation.TranslateTransition;
 import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.util.Duration;
+import javafx.util.Pair;
 import lib.Point;
 
 public class EnermyShip extends Enermy{
-
 	public EnermyShip(String linkImage, float width, float heigh) {
-		super(linkImage, width, heigh,3);
+		super(linkImage, width, heigh,5);
 	}
 	public EnermyShip() {
 		this("/resourses/gamekit/spritesheets/enermy/enemyOverlord.png", 120, 90);

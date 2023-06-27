@@ -62,6 +62,7 @@ public class UltimateBullet extends Bullet {
 						
 						if(hasVaCham(e)) {
 								e.setHP((e.getHP()-3)>0?(e.getHP()-3):0);
+								if(e.getHP()!=0)e.dau();
 								if(e.getHP()<=0) {
 									e.no();
 									int addScore = 0;
