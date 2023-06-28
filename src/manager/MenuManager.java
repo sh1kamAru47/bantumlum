@@ -1,12 +1,15 @@
 package manager;
 
 import java.io.IOException;
+import java.nio.file.Paths;
 
 import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
 import view.controller.MenuController;
 
@@ -109,4 +112,5 @@ public class MenuManager extends MenuController {
 		menuStage.hide();
 
 	}
+	
 }

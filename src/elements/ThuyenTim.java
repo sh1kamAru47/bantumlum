@@ -87,8 +87,5 @@ class DanTim extends ILU{
 	public void attack(SpaceShip spaceShip, AnchorPane pane) {
 		spaceShip.setHP(spaceShip.getHP()-1);
 		spaceShip.dau();
-		
 	}
-
-	
 }

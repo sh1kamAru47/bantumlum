@@ -1,6 +1,8 @@
 package view.controller;
 
+import java.io.File;
 import java.io.IOException;
+import java.nio.file.Paths;
 
 import manager.GamePlayManager;
 import javafx.application.Application;
@@ -14,21 +16,14 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
 
 public class MenuController {
-
-
-	
-
-	/*
-	 * public void Play(ActionEvent event) throws IOException {
-	 * 
-	 * menuStage = (Stage)((Node)event.getSource()).getScene().getWindow();
-	 * menuStage.hide();
-	 * 
-	 * gameStage = new Stage(); new GamePlayManager(gameStage); gameStage.show(); }
-	 */
+//	public void initialize() {
+//		backgroundMusic();
+//	}
 	public void start(Stage primaryStage) {
 
 		try {
@@ -36,7 +31,6 @@ public class MenuController {
 			Scene menuScene = new Scene(root);
 			primaryStage.setScene(menuScene);
 			primaryStage.show();
-
 			// EXITBUTTON
 			Button exitButton = (Button) root.lookup("#exitButton");
 			exitButton.setOnAction(event -> Platform.exit());
@@ -84,6 +78,12 @@ public class MenuController {
 				e.printStackTrace();
 			}
 		}
-
+//		MediaPlayer mediaPlayer;
+//		public void backgroundMusic() {
+//			String soundFile = "/resourses/music/spaceship shooter .mp3";
+//			Media music = new Media(new File(soundFile).toURI().toString());
+//			mediaPlayer = new MediaPlayer(music);
+//			mediaPlayer.play();
+//		}
 		
 }
