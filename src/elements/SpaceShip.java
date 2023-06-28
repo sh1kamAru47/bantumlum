@@ -11,15 +11,17 @@ import javafx.util.Duration;
 import lib.Point;
 
 public class SpaceShip extends Entity {
+	
 	private int ultiCount; // so um ti 
 	public SpaceShip(String linkImage, float width, float heigh) {
 		super(linkImage, width, heigh,10);
 	}
 	public SpaceShip() {
 		this("/resourses/gamekit/spritesheets/ship/SpaceShip.png", 90, 90);
-		setPosition(new Point(650, 700));
+		setPosition(new Point(650, 600));
 		bulletStore = 1000;
 		ultiCount = 2; // khoi tao bang 1
+		
 	}
 	private int score = 0;
 	private static final double STEP = 5;
@@ -90,18 +92,14 @@ public class SpaceShip extends Entity {
 		}
 	}
 	
-	public void spaceShipAttack1(AnchorPane pane,ArrayList<Entity> E, boolean isSpace) {
-			if (isSpace) {
+	public void spaceShipAttack1(AnchorPane pane,ArrayList<Entity> E) {
 				System.out.println("Shotin' them");
 					UpgradeShoot bullet = new UpgradeShoot(cachBan);
 					bullet.Shoot(this, pane, E);
-			}
 	}
-	public void spaceShipAttack2(AnchorPane pane, ArrayList<Entity> E, boolean isR) {
-		if (isR) {
+	public void spaceShipAttack2(AnchorPane pane, ArrayList<Entity> E) {
 				UltimateBullet ulti = new UltimateBullet("/resourses/gamekit/spritesheets/UltimateBullet/Heaven's Fury VFX_Animation 1_00.png",150,700,new Point(0,1));
 				ulti.Shoot(this, pane, E);
-		}
 	}
 	public void dau() {//đau
 		FadeTransition fade = new FadeTransition();
@@ -149,5 +147,5 @@ public class SpaceShip extends Entity {
 			
 		};timer.start();
 	}
-	
+	public boolean coKhien = false;
 }

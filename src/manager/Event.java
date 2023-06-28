@@ -14,6 +14,7 @@ import elements.ExtraUltimate;
 import elements.HpMore;
 import elements.SpaceShip;
 import elements.Stone;
+import elements.TaoCoKhien;
 import elements.ThuyenTim;
 import elements.UpgradeBullet;
 import javafx.animation.AnimationTimer;
@@ -64,19 +65,17 @@ public class Event {
 			if (deltaTime%5 == 3) themHP();
 			if (deltaTime%5 == 4) upgradeShoot();
 			if (deltaTime%7 == 3) addUltimate();
+			if (deltaTime%4 == 1) themKhien();
 //			lastTime = now;
 		}
 		
 	}
-	public void handleKey(boolean isLeftKeyPressed, boolean isRightKeyPressed, boolean isSpaceKeyPressed, boolean isRKeyPressed, boolean isFKeyPressed) {
-		//chuyen 3 cai nay ra cho khac.
-//		hpBar.setProgress(spaceShip.getHP()/10.0);
-//		bullet.setText("Bullets: "+String.valueOf(spaceShip.getBulletStore()));
-//		score.setText("Score: "+ spaceShip.getScore());
+	public void handleKey(boolean isLeftKeyPressed, boolean isRightKeyPressed, 
+			boolean isSpaceKeyPressed, boolean isRKeyPressed, boolean isFKeyPressed, boolean isEKeyPressed) {
 		if(spaceShip.canDiChuyen)spaceShip.spaceShipMove(isLeftKeyPressed, isRightKeyPressed);
 		if ((isSpaceKeyPressed && spaceShip.canShoot && spaceShip.getBulletStore() >= spaceShip.getCachBan())) {
 			
-			spaceShip.spaceShipAttack1(gamePane,E, isSpaceKeyPressed);
+			spaceShip.spaceShipAttack1(gamePane,E);
 			
 			spaceShip.canShoot = false;
 			
@@ -88,7 +87,7 @@ public class Event {
 		}
 		if (isRKeyPressed && spaceShip.canUlti) {
 			
-			spaceShip.spaceShipAttack2(gamePane, E, isRKeyPressed);
+			spaceShip.spaceShipAttack2(gamePane, E);
 			spaceShip.canUlti = false;
 			PauseTransition shootDelay = new PauseTransition(Duration.seconds(1.0));
 			shootDelay.setOnFinished(event->{
@@ -145,6 +144,10 @@ public class Event {
 	public void bonusThemDan() {
 		ExtraBullet extraBullet = new ExtraBullet();
 		extraBullet.move(spaceShip, gamePane);
+	}
+	public void themKhien() {
+		TaoCoKhien khien = new TaoCoKhien();
+		khien.move(spaceShip, gamePane);
 	}
 	public void nemDaDauTay() {
 		Stone stone = new Stone();

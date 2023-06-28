@@ -1,6 +1,5 @@
 package elements;
 
-import java.sql.Time;
 import java.util.Random;
 
 import javafx.animation.AnimationTimer;
@@ -36,12 +35,14 @@ public class ThuyenTim extends Enermy {
 			int currentFrame = 0;
 			long lastTime = 0;
 			long temp = 0;
+			Random random = new Random();
 			@Override
 			public void handle(long now) {
 				if(getCenter().distance(getEndPosition())>5) {
 					position.add(vector);
 					setPosition(position);
 				}
+				
 				// TODO Auto-generated method stub
 				if(isBOOM)this.stop();
 				if(currentFrame == 2)currentFrame = 0;
@@ -51,9 +52,8 @@ public class ThuyenTim extends Enermy {
 					currentFrame++;	
 					lastTime = now;
 				}
-				if(now - temp > 1e9) {
+				if(now % (random.nextInt(5000 )+1)==0 ){
 					attack(spaceShip, pane);
-					temp = now;
 				}
 				
 		
@@ -66,26 +66,11 @@ public class ThuyenTim extends Enermy {
 	@Override
 	public void attack(SpaceShip spaceShip, AnchorPane pane) {
 		// TODO Auto-generated method stub
-		DanTim dan = new DanTim();
+		BulletEnemy dan = new BulletEnemy();
 		Point temp = new Point(getCenter().getX()-10,getCenter().getY()+10);
 		dan.setPosition(temp);
 		dan.move(spaceShip, pane);
 	}
 
 }
-class DanTim extends ILU{
 
-	public DanTim(String linkImage, float width, float heigh, int HP, Point vector) {
-		super(linkImage, width, heigh, HP, vector);
-		// TODO Auto-generated constructor stub
-	}
-
-	public DanTim() {
-		this("/resourses/gamekit/spritesheets/enermy/danTim.png",30,30,1,new Point(0,8));
-	}
-	@Override
-	public void attack(SpaceShip spaceShip, AnchorPane pane) {
-		spaceShip.setHP(spaceShip.getHP()-1);
-		spaceShip.dau();
-	}
-}

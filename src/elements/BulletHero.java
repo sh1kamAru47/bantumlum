@@ -47,7 +47,8 @@ public class BulletHero extends Bullet{
 								addScore = 2;
 							}
 							spaceShip.setScore(spaceShip.getScore() + addScore);
-								E.remove(e);
+							E.remove(e);
+//							e.setPosition(new Point(1000, 1000));
 							
 						}
 					
