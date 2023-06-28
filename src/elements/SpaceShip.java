@@ -14,7 +14,7 @@ public class SpaceShip extends Entity {
 	
 	private int ultiCount; // so um ti 
 	public SpaceShip(String linkImage, float width, float heigh) {
-		super(linkImage, width, heigh,10);
+		super(linkImage, width, heigh,1);
 	}
 	public SpaceShip() {
 		this("/resourses/gamekit/spritesheets/ship/SpaceShip.png", 90, 90);

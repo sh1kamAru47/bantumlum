@@ -1,8 +1,15 @@
 package manager;
 
-import java.awt.event.ActionEvent;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.Collections;
 
+import elements.SpaceShip;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -15,8 +22,33 @@ public class GameOver extends GamePlayManager {
 	Stage playStage = new Stage();
 	Stage menuStage = new Stage();
 
-	public GameOver(Stage gameOverStage) throws IOException {
-		Parent root = FXMLLoader.load(getClass().getResource("/view/GameOver.fxml"));
+	public GameOver(Stage gameOverStage,SpaceShip spaceShip) throws IOException {
+		int yourScore = spaceShip.getScore();
+		ArrayList<Integer> scores = new ArrayList<Integer>();
+		//sua duong dan file scores.txt
+		FileReader fileReader = new FileReader("C:\\Users\\T's Private Property\\Desktop\\bantumlum\\BanBong.zip_expanded.zip_expanded\\BanBong.zip_expanded\\src\\resourses\\scores.txt");
+		BufferedReader reader = new BufferedReader(fileReader);
+		String line;
+		while((line = reader.readLine()) != null) {
+			scores.add(Integer.parseInt(line));
+			
+		}
+		reader.close();
+		fileReader.close();
+		scores.add(yourScore);
+		Collections.sort(scores,(a,b)->b-a);
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/GameOver.fxml"));
+		Parent root = loader.load();
+		GameOverController controller = loader.getController();
+		controller.setScore(yourScore);
+		controller.setFirst(scores.get(0)+"");
+//		sua duong dan file scores.txt
+		try (BufferedWriter writer = new BufferedWriter(new FileWriter("C:\\Users\\T's Private Property\\Desktop\\bantumlum\\BanBong.zip_expanded.zip_expanded\\BanBong.zip_expanded\\src\\resourses\\scores.txt",false))) {
+			for(int i = 0;i<3;i++) {
+				writer.write(String.valueOf(scores.get(i)));
+				writer.newLine();
+			}
+		}
 		Scene scene = new Scene(root, 1280, 800);
 		gameOverStage.setScene(scene);
 		gameOverStage.show();
@@ -33,14 +65,7 @@ public class GameOver extends GamePlayManager {
 	}
 
 	public void showPlayStage(Stage playStage, Stage gameOverStage) {
-		/*
-		 * public void Play(ActionEvent event) throws IOException {
-		 * 
-		 * menuStage = (Stage)((Node)event.getSource()).getScene().getWindow();
-		 * menuStage.hide();
-		 * 
-		 * gameStage = new Stage(); new GamePlayManager(gameStage); gameStage.show(); }
-		 */
+
 
 		try {
 			new GamePlayManager(playStage);

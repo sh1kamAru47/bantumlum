@@ -65,7 +65,7 @@ public class Event {
 			if (deltaTime%5 == 3) themHP();
 			if (deltaTime%5 == 4) upgradeShoot();
 			if (deltaTime%7 == 3) addUltimate();
-			if (deltaTime%4 == 1) themKhien();
+//			if (deltaTime%4 == 1) themKhien();
 //			lastTime = now;
 		}
 		
@@ -195,7 +195,7 @@ public class Event {
 //	}
 	public void gameOver() throws IOException {
 			Stage stage = new Stage();
-			new GameOver(stage);
+			new GameOver(stage,spaceShip);
 			spaceShip.setHP(-1);
 		
 	}
