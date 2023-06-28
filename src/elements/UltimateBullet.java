@@ -80,6 +80,7 @@ public class UltimateBullet extends Bullet {
 					
 					if(currentFrame == 12 ) {
 						this.stop();
+						setImageView(null);
 						
 					}
 					if(now - lastTime>=1e9/10) {

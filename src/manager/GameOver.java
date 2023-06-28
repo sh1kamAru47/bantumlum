@@ -26,7 +26,7 @@ public class GameOver extends GamePlayManager {
 		int yourScore = spaceShip.getScore();
 		ArrayList<Integer> scores = new ArrayList<Integer>();
 		//sua duong dan file scores.txt
-		FileReader fileReader = new FileReader("C:\\Users\\T's Private Property\\Desktop\\bantumlum\\BanBong.zip_expanded.zip_expanded\\BanBong.zip_expanded\\src\\resourses\\scores.txt");
+		FileReader fileReader = new FileReader("src/manager/scores.txt");
 		BufferedReader reader = new BufferedReader(fileReader);
 		String line;
 		while((line = reader.readLine()) != null) {
@@ -43,7 +43,7 @@ public class GameOver extends GamePlayManager {
 		controller.setScore(yourScore);
 		controller.setFirst(scores.get(0)+"");
 //		sua duong dan file scores.txt
-		try (BufferedWriter writer = new BufferedWriter(new FileWriter("C:\\Users\\T's Private Property\\Desktop\\bantumlum\\BanBong.zip_expanded.zip_expanded\\BanBong.zip_expanded\\src\\resourses\\scores.txt",false))) {
+		try (BufferedWriter writer = new BufferedWriter(new FileWriter("src/manager/scores.txt",false))) {
 			for(int i = 0;i<3;i++) {
 				writer.write(String.valueOf(scores.get(i)));
 				writer.newLine();

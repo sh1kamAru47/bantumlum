@@ -14,7 +14,7 @@ public class SpaceShip extends Entity {
 	
 	private int ultiCount; // so um ti 
 	public SpaceShip(String linkImage, float width, float heigh) {
-		super(linkImage, width, heigh,1);
+		super(linkImage, width, heigh,10);
 	}
 	public SpaceShip() {
 		this("/resourses/gamekit/spritesheets/ship/SpaceShip.png", 90, 90);
@@ -23,6 +23,7 @@ public class SpaceShip extends Entity {
 		ultiCount = 2; // khoi tao bang 1
 		
 	}
+
 	private int score = 0;
 	private static final double STEP = 5;
 	private double shipAngle;
@@ -147,5 +148,13 @@ public class SpaceShip extends Entity {
 			
 		};timer.start();
 	}
-	public boolean coKhien = false;
+	public int getKhien() {
+		return khien;
+	}
+	public void setKhien(int khien) {
+		this.khien = khien;
+	}
+
+
+	private int khien= 10;
 }

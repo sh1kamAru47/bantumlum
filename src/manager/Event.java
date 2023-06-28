@@ -152,7 +152,9 @@ public class Event {
 	public void nemDaDauTay() {
 		Stone stone = new Stone();
 		
+		E.add(stone);
 		AnimationTimer timer = new AnimationTimer() {
+			
 			long lastTime = 0;
 			@Override
 			public void handle(long now) {
@@ -173,13 +175,22 @@ public class Event {
 					stone.setVector(vector);
 					
 				}
+				 if(stone.getPosition().getY()>800) {
+					 this.stop();
+					 E.remove(stone);
+				
+					
+			
+				 }
+				
 				
 			}
 			}
 			
 		};timer.start();
-		E.add(stone);
+		
 		stone.move(spaceShip, gamePane);
+		
 	}
 //	public void createBossText() {
 //		Text bossText = new Text("BOSS");

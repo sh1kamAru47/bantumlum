@@ -58,7 +58,9 @@ public class BulletHero extends Bullet{
 				}
                  
 				if (position.getY() < 0) {
+					setImageView(null);
 					pane.getChildren().remove(getImageView());
+					
 					this.stop();// dung animationTimer lai
 				}	
 			}

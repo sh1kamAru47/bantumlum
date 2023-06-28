@@ -33,10 +33,14 @@ public class Stone extends ILU {
 	public void attack(SpaceShip spaceShip, AnchorPane pane) {
 		
 		if(!isBOOM) {
-			spaceShip.dau();
-			if (!spaceShip.coKhien)
+			if(spaceShip.getKhien()>0)spaceShip.setKhien(spaceShip.getKhien() - 1);
+			else {
+				spaceShip.dau();
 				if(spaceShip.getHP()>0)
 					spaceShip.setHP(spaceShip.getHP()-1>0?spaceShip.getHP()-1:0);
+			}
+			
+				
 
 		}
 	}

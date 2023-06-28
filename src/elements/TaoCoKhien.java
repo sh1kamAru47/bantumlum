@@ -13,7 +13,7 @@ public class TaoCoKhien extends ExtraPresent{
 		// TODO Auto-generated constructor stub
 	}
 	public TaoCoKhien() {
-		super("/resourses/gamekit/spritesheets/khien.png", 60, 60);
+		super("/resourses/gamekit/spritesheets/khien.png", 70, 70);
 		this.setVector(new Point(0,5));
 		Random random = new Random();
 		this.setPosition(new Point((int) (random.nextDouble()*1100 + 100),0));
@@ -21,8 +21,7 @@ public class TaoCoKhien extends ExtraPresent{
 	@Override
 	public void effectPresent(SpaceShip spaceShip) {
 		// TODO Auto-generated method stub
-		Khien khien = new Khien("/resourses/gamekit/spritesheets/khienn.png", 300, 300, new Point(0, 1));
-		khien.baoVe(spaceShip);
+		spaceShip.setKhien(15);
 		
 	}
 }

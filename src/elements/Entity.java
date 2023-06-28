@@ -53,6 +53,10 @@ public class Entity {
 		return imageView;
 	}
 
+	public void setImageView(ImageView imageView) {
+		this.imageView = imageView;
+	}
+
 	public Entity(String linkImage, float width, float heigh, int HP) {
 		this.Width = width;
 		this.Height = heigh;

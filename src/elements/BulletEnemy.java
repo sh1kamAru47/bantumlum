@@ -15,10 +15,14 @@ public class BulletEnemy extends Bullet{
 	}
 	@Override
 	public void attack(SpaceShip spaceShip, AnchorPane pane) {
-		spaceShip.dau();
-		if (!spaceShip.coKhien)
-			if(spaceShip.getHP()>0)
-				spaceShip.setHP(spaceShip.getHP()-1>0?spaceShip.getHP()-1:0);
+		if(spaceShip.getKhien()>0)spaceShip.setKhien(spaceShip.getKhien() - 1);
+		else {
+			spaceShip.dau();
+			spaceShip.setHP(spaceShip.getHP()-1>0?spaceShip.getHP()-1:0);
+		}
+		
+		
+				
 
 	}
 
