@@ -190,7 +190,7 @@ public class Event {
 //	}
 	public void gameOver() throws IOException {
 			Stage stage = new Stage();
-			new GameOver(stage);
+			new GameOver(stage,spaceShip);
 			spaceShip.setHP(-1);
 		
 	}

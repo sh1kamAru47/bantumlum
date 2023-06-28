@@ -40,10 +40,9 @@ public class BulletHero extends Bullet{
 						if(e.getHP()<=0) {
 							e.no();
 							E.remove(e);
-							pane.getChildren().remove(e.getImageView());
 							e = null;
-							
-
+							if(e instanceof Stone) spaceShip.setScore(spaceShip.getScore()+1);
+							else spaceShip.setScore(spaceShip.getScore()+2);
 							
 						}
 					

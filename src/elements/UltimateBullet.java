@@ -67,7 +67,9 @@ public class UltimateBullet extends Bullet {
 									e.no();
 									E.remove(e);
 									e = null;
-									spaceShip.setScore(spaceShip.getScore()+1);
+									if(e instanceof Stone) spaceShip.setScore(spaceShip.getScore()+1);
+									else spaceShip.setScore(spaceShip.getScore()+2);
+									
 								}
 						}
 					}
